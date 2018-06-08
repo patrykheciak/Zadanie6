@@ -154,13 +154,16 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(List<MyMessage> myMessages) {
-            for (MyMessage m : myMessages) {
-                if (!messages.contains(m)) {
-                    messages.add(m);
+            if (myMessages != null){
+
+                for (MyMessage m : myMessages) {
+                    if (!messages.contains(m)) {
+                        messages.add(m);
+                    }
                 }
+                myAdapter.notifyDataSetChanged();
+                recyclerView.smoothScrollToPosition(messages.size() - 1);
             }
-            myAdapter.notifyDataSetChanged();
-            recyclerView.smoothScrollToPosition(messages.size() - 1);
         }
 
     }
